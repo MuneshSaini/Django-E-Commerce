@@ -139,8 +139,3 @@ The Django Admin panel will be at `http://127.0.0.1:8000/admin/`.
 | <img src="screenshots/product_page.png" alt="Product Detail Page" width="100%"> | <img src="screenshots/cart_page.png" alt="Shopping Cart Page" width="100%"> |
 | **Modern Login Page** | **Checkout Confirmation** |
 | <img src="screenshots/login_page.png" alt="Login Page" width="100%"> | <img src="screenshots/checkout_page.png" alt="Checkout Page" width="100%"> |
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE) - feel free to use, modify, and distribute it.
-
