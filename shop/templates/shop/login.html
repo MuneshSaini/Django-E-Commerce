@@ -1,0 +1,40 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-header">
+        <h2>Welcome Back</h2>
+        <p>Please enter your details to sign in.</p>
+    </div>
+
+    <form method="post" class="login-form">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="form-error-summary">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="form-error">{{ field.errors.as_text|cut:"* " }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+    </form>
+
+    <div class="login-footer">
+        <p>This is a demo site. Use credentials like <strong>alice / password</strong>.</p>
+    </div>
+</div>
+{% endblock %}

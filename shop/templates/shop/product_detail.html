@@ -1,0 +1,102 @@
+{% extends "shop/base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <h1>{{ product.name }}</h1>
+    <p class="category" style="margin-bottom: 1rem;"><strong>Category:</strong> {{ product.category }}</p>
+
+    <p style="margin-bottom: 1rem;">
+        <strong>Availability:</strong>
+        {% if product.stock > 0 %}
+            <span class="stock-status in-stock">In Stock ({{ product.stock }} left)</span>
+        {% else %}
+            <span class="stock-status out-of-stock">Out of Stock</span>
+        {% endif %}
+    </p>
+
+    <p class="price" style="font-size: 2em; margin: 1rem 0; font-weight: 600; color: var(--primary-color);">${{ product.price }}</p>
+    
+    <div class="description" style="margin-bottom: 1.5rem;">
+        <p>{{ product.description|linebreaks }}</p>
+    </div>
+
+    <div class="tags">
+        <strong>Tags:</strong>
+        {% for tag in product.tags.all %}
+            <span>{{ tag.name }}</span>
+        {% endfor %}
+    </div>
+
+    <hr style="margin: 2rem 0; border-color: var(--border-color);">
+    
+    <div style="display: flex; gap: 1rem; align-items: center;">
+        <form action="{% url 'shop:add_to_cart' product.id %}" method="post" class="add-to-cart-form">
+            {% csrf_token %}
+            {{ form.quantity }}
+            <button type="submit" class="btn btn-primary" {% if product.stock <= 0 %}disabled{% endif %}>
+                {% if product.stock > 0 %}Add to Cart{% else %}Out of Stock{% endif %}
+            </button>
+        </form>
+        
+        {% if user.is_authenticated %}
+        <div class="feedback-buttons">
+            <button class="btn" id="like-btn" data-url="{% url 'shop:record_feedback' product.pk 'like' %}">
+                Like
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if similar_items %}
+<section class="recommendations" style="margin-top: 40px;">
+    <h2>You may also like</h2>
+    <div class="recommendations-grid">
+        {% for item in similar_items %}
+            {% with product=item %}
+                {% include "shop/partials/product_card.html" %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const likeBtn = document.getElementById('like-btn');
+    if (likeBtn) {
+        likeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.dataset.url;
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    if (data.created) {
+                        likeBtn.classList.add('liked');
+                        likeBtn.textContent = 'Liked!';
+                    } else {
+                        likeBtn.classList.remove('liked');
+                        likeBtn.textContent = 'Like';
+                    }
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+});
+</script>
+{% endblock %}

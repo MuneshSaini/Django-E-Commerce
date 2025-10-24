@@ -1,0 +1,11 @@
+id,name,category,price,tags,description,stock
+1,Laptop Pro 15,"Electronics",1200.00,"tech,work,portable","A powerful and sleek laptop for all your professional needs. Features a stunning 15-inch display and a blazing-fast processor.",15
+2,Wireless Mouse,"Electronics",25.50,"tech,ergonomic","Ergonomically designed for comfort, this wireless mouse provides precise tracking and long battery life.",50
+3,Organic Cotton T-Shirt,"Apparel",30.00,"fashion,casual,eco-friendly","Made from 100% organic cotton, this t-shirt is both comfortable and sustainable. A perfect wardrobe staple.",120
+4,Denim Jeans,"Apparel",75.00,"fashion,durable","Classic straight-fit denim jeans crafted for durability and timeless style. Suitable for any occasion.",80
+5,Running Shoes,"Footwear",110.00,"sports,comfort,running","Lightweight running shoes with advanced cushioning technology to provide maximum comfort and support during your runs.",40
+6,Smartwatch Fitness Tracker,"Electronics",199.99,"tech,sports,health","Track your workouts, monitor your health, and stay connected with this feature-packed smartwatch.",30
+7,Leather Wallet,"Accessories",45.00,"fashion,durable,classic","A slim and stylish wallet made from genuine leather, featuring multiple card slots and a classic design.",0
+8,Stainless Steel Water Bottle,"Kitchen",22.00,"eco-friendly,health,durable","Keep your drinks cold for 24 hours or hot for 12. This durable, eco-friendly bottle is perfect for on-the-go hydration.",200
+9,Yoga Mat,"Sports",35.00,"sports,health,eco-friendly","A non-slip, eco-friendly yoga mat that provides the perfect amount of cushioning for your practice.",65
+10,Bluetooth Headphones,"Electronics",89.90,"tech,audio,portable","Immerse yourself in high-fidelity sound with these comfortable, over-ear Bluetooth headphones.",25

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Commerce{% endblock %}</title>
+    {% load static %}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'shop/styles.css' %}">
+</head>
+
+
+<body>
+    <header>
+        <h1><a href="{% url 'shop:product_list' %}">Django Commerce</a></h1>
+        <nav>
+            <a href="{% url 'shop:cart_view' %}" class="nav-link">Cart (<span id="cart-count">{{ cart.get_total_items }}</span>)</a>
+            {% if user.is_authenticated %}
+                <span class="nav-link">Hi, {{ user.username }}!</span>
+                <form action="{% url 'shop:logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'shop:login' %}" class="btn btn-primary btn-sm">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    {# The <main> tag acts as the growing wrapper #}
+    <main>
+        {# The .container div is nested inside, handling content width #}
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} Django Commerce. A Demo Project.</p>
+    </footer>
+    
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

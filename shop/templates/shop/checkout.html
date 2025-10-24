@@ -1,0 +1,13 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Checkout Complete{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 4rem 2rem; background: var(--surface-color); border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+    <h1 style="color: var(--success-color); font-size: 3rem;">Thank You!</h1>
+    <p style="font-size: 1.2rem;">Your order has been placed successfully.</p>
+    <p>Your purchase interactions have been recorded to improve future recommendations.</p>
+    <br>
+    <a href="{% url 'shop:product_list' %}" class="btn btn-primary">Continue Shopping</a>
+</div>
+{% endblock %}

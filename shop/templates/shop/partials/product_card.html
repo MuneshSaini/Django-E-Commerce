@@ -1,0 +1,12 @@
+<div class="product-card">
+    <a href="{% url 'shop:product_detail' product.pk %}">
+        <div class="card-content">
+            <h3>{{ product.name }}</h3>
+            <p class="category"><em>{{ product.category }}</em></p>
+            <p class="price">${{ product.price }}</p>
+        </div>
+    </a>
+    <div class="card-footer">
+        <a href="{% url 'shop:product_detail' product.pk %}" class="btn btn-primary">View Details</a>
+    </div>
+</div>

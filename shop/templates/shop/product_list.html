@@ -1,0 +1,25 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated and user_recommendations %}
+    <section class="recommendations">
+        <h2>Recommended for You</h2>
+        <div class="recommendations-grid">
+            {% for product in user_recommendations %}
+                {% include "shop/partials/product_card.html" %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <h2>All Products</h2>
+    <div class="product-grid">
+        {% for product in products %}
+            {% include "shop/partials/product_card.html" %}
+        {% empty %}
+        <p>No products available.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
